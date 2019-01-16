@@ -10,14 +10,10 @@
     <script src="vendor/jquery/jquery.min.js"></script>
     <link rel="stylesheet" src="css/style.css">
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    <script type="text/JavaScript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="aos/aos.css">
     <link rel="shortcut icon" href="img/favicon.ico">
-    <!-- <script type="text/javascript" href="js/jquery.lazy.min.js"></script> -->
     
     
     <style>
@@ -218,7 +214,7 @@
 
 <body>
         <nav id="navbar" class="navbar navbar-expand-lg navbar-light top-navbar" data-toggle="sticky-onscroll">
-                <div><a href="index_main.html"><img src="home/icons/icon_logo.png" class="navbar-brand"></a></div>
+                <div style="padding-left:15px;"><a href="index_main.html"><img src="home/icons/icon_logo.png" class="navbar-brand"></a></div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -704,39 +700,39 @@
    <script>
        
 
-// Sticky navbar
-// =========================
-$(document).ready(function () {
-                // Custom function which toggles between sticky class (is-sticky)
-                var stickyToggle = function (sticky, stickyWrapper, scrollElement) {
-                    var stickyHeight = sticky.outerHeight();
-                    var stickyTop = stickyWrapper.offset().top;
-                    if (scrollElement.scrollTop() >= stickyTop) {
-                        stickyWrapper.height(stickyHeight);
-                        sticky.addClass("is-sticky");
-                    }
-                    else {
-                        sticky.removeClass("is-sticky");
-                        stickyWrapper.height('auto');
-                    }
-                };
+            // Sticky navbar
+            // =========================
+            $(document).ready(function () {
+                            // Custom function which toggles between sticky class (is-sticky)
+                            var stickyToggle = function (sticky, stickyWrapper, scrollElement) {
+                                var stickyHeight = sticky.outerHeight();
+                                var stickyTop = stickyWrapper.offset().top;
+                                if (scrollElement.scrollTop() >= stickyTop) {
+                                    stickyWrapper.height(stickyHeight);
+                                    sticky.addClass("is-sticky");
+                                }
+                                else {
+                                    sticky.removeClass("is-sticky");
+                                    stickyWrapper.height('auto');
+                                }
+                            };
 
-                // Find all data-toggle="sticky-onscroll" elements
-                $('[data-toggle="sticky-onscroll"]').each(function () {
-                    var sticky = $(this);
-                    var stickyWrapper = $('<div>').addClass('sticky-wrapper'); // insert hidden element to maintain actual top offset on page
-                    sticky.before(stickyWrapper);
-                    sticky.addClass('sticky');
+                            // Find all data-toggle="sticky-onscroll" elements
+                            $('[data-toggle="sticky-onscroll"]').each(function () {
+                                var sticky = $(this);
+                                var stickyWrapper = $('<div>').addClass('sticky-wrapper'); // insert hidden element to maintain actual top offset on page
+                                sticky.before(stickyWrapper);
+                                sticky.addClass('sticky');
 
-                    // Scroll & resize events
-                    $(window).on('scroll.sticky-onscroll resize.sticky-onscroll', function () {
-                        stickyToggle(sticky, stickyWrapper, $(this));
-                    });
+                                // Scroll & resize events
+                                $(window).on('scroll.sticky-onscroll resize.sticky-onscroll', function () {
+                                    stickyToggle(sticky, stickyWrapper, $(this));
+                                });
 
-                    // On page load
-                    stickyToggle(sticky, stickyWrapper, $(window));
-                });
-            });
+                                // On page load
+                                stickyToggle(sticky, stickyWrapper, $(window));
+                            });
+                        });
    </script>
 </body>
 

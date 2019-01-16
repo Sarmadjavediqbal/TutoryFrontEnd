@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Free trial</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <script src="vendor/jquery/jquery.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="aos/aos.css">
@@ -25,6 +26,12 @@
         }
         .custom-navbar{
             background-color: #000
+        }
+        .navbar-light .navbar-nav .nav-link{
+            color: #cccccc
+        }
+        .navbar-light .navbar-nav .nav-link:hover{
+            color: #fff
         }
         ul{
             list-style: none
@@ -121,14 +128,14 @@
 </head>
 
 <body>
-        <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
-                <div><a href="index_main.html"><img src="home/icons/icon_logo.png" class="navbar-brand"></a></div>
+        <nav id="navbar" class="navbar navbar-expand-lg navbar-light top-navbar custom-navbar" data-toggle="sticky-onscroll">
+                <div style="padding-left:15px;"><a href="index_main.html"><img src="home/icons/icon_logo.png" class="navbar-brand"></a></div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
         
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="nav navbar-nav ml-auto">
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="index_main.html" id="custom-navbar" role="button"  aria-haspopup="true" aria-expanded="true">
                                 HOME
@@ -140,7 +147,6 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="about us.html">About Us</a>
-                                <!-- <a class="dropdown-item" href="private policy.html">Our Policy</a> -->
                                 <a class="dropdown-item" href="Terms and conditions.html">Terms & Conditions</a>
                                 <a class="dropdown-item" href="contact.html">Contact Us</a>
                             </div>
@@ -371,14 +377,55 @@
                 </div>
             </div>
         </div>
-
-    <script src="vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js"></script>
     <script src="vendor/popper.js/umd/popper.min.js"> </script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
     <script src="aos/aos.js"></script>
     <script>
         AOS.init();
     </script>
+    <script>
+            jQuery(document).ready(function ($) {
+                  $("img.lazy").Lazy();
+              });
+         </script>
+    <script>
+       
+
+            // Sticky navbar
+            // =========================
+            $(document).ready(function () {
+                            // Custom function which toggles between sticky class (is-sticky)
+                            var stickyToggle = function (sticky, stickyWrapper, scrollElement) {
+                                var stickyHeight = sticky.outerHeight();
+                                var stickyTop = stickyWrapper.offset().top;
+                                if (scrollElement.scrollTop() >= stickyTop) {
+                                    stickyWrapper.height(stickyHeight);
+                                    sticky.addClass("is-sticky");
+                                }
+                                else {
+                                    sticky.removeClass("is-sticky");
+                                    stickyWrapper.height('auto');
+                                }
+                            };
+
+                            // Find all data-toggle="sticky-onscroll" elements
+                            $('[data-toggle="sticky-onscroll"]').each(function () {
+                                var sticky = $(this);
+                                var stickyWrapper = $('<div>').addClass('sticky-wrapper'); // insert hidden element to maintain actual top offset on page
+                                sticky.before(stickyWrapper);
+                                sticky.addClass('sticky');
+
+                                // Scroll & resize events
+                                $(window).on('scroll.sticky-onscroll resize.sticky-onscroll', function () {
+                                    stickyToggle(sticky, stickyWrapper, $(this));
+                                });
+
+                                // On page load
+                                stickyToggle(sticky, stickyWrapper, $(window));
+                            });
+                        });
+   </script>
 </body>
 
 </html>
